@@ -14,7 +14,7 @@ from jinja2 import BaseLoader, Environment, meta
 
 # Truncation of jinja template variables
 # 1710 = 300 words x 4.7 avg characters per word + 300 spaces
-TEXT_VAR_LENGTH = 2048
+TEXT_VAR_LENGTH = 8192
 
 # Local path to the folder containing the templates
 TEMPLATES_FOLDER_PATH = pkg_resources.resource_filename(__name__, "templates")
@@ -359,7 +359,7 @@ class Template(yaml.YAMLObject):
         else:
             return None
 
-    def apply(self, example, truncate=True, highlight_variables=False):
+    def apply(self, example, truncate=True, cuad_truncate=False, highlight_variables=False):
         """
         Creates a prompt by applying this template to an example
 
@@ -383,6 +383,30 @@ class Template(yaml.YAMLObject):
         rtemplate = env.from_string(jinja)
 
         protected_example = self._escape_pipe(example)
+
+        if cuad_truncate:
+            # logic borrowed from SN-lm-eval-harness implementation
+            # https://github.sambanovasystems.com/SambaNova/SN-lm-eval-harness/blob/5635cea320c30b47612763aa1119ae43a008f997/lm_eval/tasks/cuad.py#L29-L40
+            if len(protected_example['answers']['answer_start']) > 0:
+                answer_start = protected_example['answers']['answer_start'][0]
+            else:
+                # if no answer
+                answer_start = 0
+
+            if answer_start < TEXT_VAR_LENGTH:
+                truncate_start_idx = 0
+            else:
+                truncate_start_idx = answer_start - TEXT_VAR_LENGTH
+
+            truncate_end_idx = answer_start + TEXT_VAR_LENGTH
+
+            raw_truncated = protected_example['context'][truncate_start_idx:truncate_end_idx]
+
+            # clean off string from right then from left
+            # logic borrowed from jinja truncate: https://github.com/pallets/jinja/blob/953acd65b2be5428482dcb60f5b8481b66252ac9/src/jinja2/filters.py#L876
+            cleaned_context = raw_truncated.rsplit(" ", 1)[0]
+            cleaned_context = cleaned_context.split(" ", 1)[1]
+            protected_example['context'] = cleaned_context
 
         # Adds in answer_choices variable
         if "answer_choices" in protected_example:
