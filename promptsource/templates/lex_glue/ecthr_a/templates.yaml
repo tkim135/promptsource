@@ -1,0 +1,242 @@
+dataset: lex_glue
+subset: ecthr_a
+templates:
+  114f3c76-1c7a-4e14-ab0e-6a969ba66211: !Template
+    answer_choices: Article 2 ||| Article 3 ||| Article 5 ||| Article 6 ||| Article
+      8 ||| Article 9 ||| Article 10 ||| Article 11 ||| Article 14 ||| Article P1-1
+      ||| None of the above
+    id: 114f3c76-1c7a-4e14-ab0e-6a969ba66211
+    jinja: 'Given the following facts from a European Court of Human Rights (ECtHR)
+      case:
+
+      "{{''\n''.join(text).replace('' ,'', '','').replace('' .'', ''.'').replace(''``
+      '', ''\'''').replace('' \''\'''', ''\'''').strip()}}"
+
+
+      Which article(s) of the European Convention of Human Rights (ECHR) have been
+      violated out of the following options:
+
+
+      {{'', ''.join(answer_choices)}}
+
+
+      The following articles were violated: |||
+
+      {% if labels|length == 0 %}
+
+      None of the above
+
+      {% else %}
+
+      {% set answers = [] %}
+
+      {% for index in labels %}
+
+      {% set dummy = answers.append(answer_choices[index]) %}
+
+      {% endfor %}
+
+      {{ answers | join('', '') }}
+
+      {% endif %}'
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: SN-lm-eval-harness
+    reference: ''
+  8aec3a54-3fb7-420a-8320-bb8f65da7845: !Template
+    answer_choices: Article 2 ||| Article 3 ||| Article 5 ||| Article 6 ||| Article
+      8 ||| Article 9 ||| Article 10 ||| Article 11 ||| Article 14 ||| Article P1-1
+      ||| None
+    id: 8aec3a54-3fb7-420a-8320-bb8f65da7845
+    jinja: 'Here are some facts from a European Court of Human Rights (ECtHR) case.\n"{{''\n''.join(text).replace(''
+      ,'', '','').replace('' .'', ''.'').replace(''`` '', ''\'''').replace('' \''\'''',
+      ''\'''').strip()}}"
+
+
+      Were any articles of ECHR from these options violated? If so, can you name the
+      violated articles?
+
+      - {{''\n- ''.join(answer_choices)}} |||
+
+      {% if labels|length == 0 %}
+
+      No, none of the ECHR articles were violated.
+
+      {% else %}
+
+      {% set answers = [] %}
+
+      {% for index in labels %}
+
+      {% set dummy = answers.append(answer_choices[index]) %}
+
+      {% endfor %}
+
+      {% if labels|length == 1 %}
+
+      Yes, {{ answers[0] }} of ECHR was violated.
+
+      {% else %}
+
+      Yes, {{ answers | join('', '') }} of ECHR were violated.
+
+      {% endif %}
+
+      {% endif %}
+
+      '
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: Yes/No then specify
+    reference: ''
+  9bc5fed6-a2c9-444d-a627-3fa21e6d37d3: !Template
+    answer_choices: Article 2 ||| Article 3 ||| Article 5 ||| Article 6 ||| Article
+      8 ||| Article 9 ||| Article 10 ||| Article 11 ||| Article 14 ||| Article P1-1
+      ||| None
+    id: 9bc5fed6-a2c9-444d-a627-3fa21e6d37d3
+    jinja: 'Given the following facts from a European Court of Human Rights (ECtHR)
+      case:
+
+      "{{''\n''.join(text).replace('' ,'', '','').replace('' .'', ''.'').replace(''``
+      '', ''\'''').replace('' \''\'''', ''\'''').strip()}}"
+
+
+      Which article(s) of the European Convention on Human Rights (ECHR) have been
+      violated, if any, out of the following options:
+
+
+      - Article 2: Right to Life
+
+      - Article 3: Prohibition of Torture and Inhuman or Degrading Treatment or Punishment
+
+      - Article 5: Right to Liberty and Security
+
+      - Article 6: Right to a Fair Trial
+
+      - Article 8: Right to Respect for Private and Family Life
+
+      - Article 9: Freedom of Thought, Conscience, and Religion
+
+      - Article 10: Freedom of Expression
+
+      - Article 11: Freedom of Assembly and Association
+
+      - Article 14: Prohibition of Discrimination
+
+      - Article P1-1: Protection of Property
+
+      - None of the above
+
+
+      Please select the relevant option(s) from the list above. |||
+
+      {% if labels|length == 0 %}
+
+      None of the above
+
+      {% else %}
+
+      {% set answers = [] %}
+
+      {% for index in labels %}
+
+      {% set dummy = answers.append(answer_choices[index]) %}
+
+      {% endfor %}
+
+      {{ answers | join('', '') }}
+
+      {% endif %}
+
+      '
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      languages: []
+      metrics: []
+      original_task: false
+    name: Describe the options
+    reference: ''
+  9f1f4e4f-67ac-40a0-9c61-4b4e16725f2d: !Template
+    answer_choices: Article 2 ||| Article 3 ||| Article 5 ||| Article 6 ||| Article
+      8 ||| Article 9 ||| Article 10 ||| Article 11 ||| Article 14 ||| Article P1-1
+      ||| None
+    id: 9f1f4e4f-67ac-40a0-9c61-4b4e16725f2d
+    jinja: 'Given the following facts from a European Court of Human Rights (ECtHR)
+      case:\n"{{''\n''.join(text).replace('' ,'', '','').replace('' .'', ''.'').replace(''``
+      '', ''\'''').replace('' \''\'''', ''\'''').strip()}}"\n\nWhich article(s) of
+      ECHR have been violated, if any, out of the following options:
+
+      - {{''\n- ''.join(answer_choices)}}\nPlease answer in a complete sentence. |||
+
+      {% if labels|length == 0 %}
+
+      None of the ECHR articles have been violated.
+
+      {% else %}
+
+      {% set answers = [] %}
+
+      {% for index in labels %}
+
+      {% set dummy = answers.append(answer_choices[index]) %}
+
+      {% endfor %}
+
+      {% if labels|length == 1 %}
+
+      {{ answers[0] }} of ECHR has been violated.
+
+      {% else %}
+
+      {{ answers | join('', '') }} of ECHR have been violated.
+
+      {% endif %}
+
+      {% endif %}'
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: coastalcph style
+    reference: ''
+  dae16bc3-4635-43ff-a65c-046ba550b417: !Template
+    answer_choices: null
+    id: dae16bc3-4635-43ff-a65c-046ba550b417
+    jinja: 'Given the following facts from a European Court of Human Rights (ECtHR)
+      case:\n"{{''\n''.join(text).replace('' ,'', '','').replace('' .'', ''.'').replace(''``
+      '', ''\'''').replace('' \''\'''', ''\'''').strip()}}"\n\nWhich article(s) of
+      ECHR have been violated, if any, out of the following options:
+
+      - {{''\n- ''.join(answer_choices)}}\nThe relevant options are: |||
+
+      {% if labels|length == 0 %}
+
+      None
+
+      {% else %}
+
+      {% set answers = [] %}
+
+      {% for index in labels %}
+
+      {% set dummy = answers.append(answer_choices[index]) %}
+
+      {% endfor %}
+
+      {{ answers | join('', '') }}
+
+      {% endif %}'
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: Answer in a complete sentence
+    reference: ''
