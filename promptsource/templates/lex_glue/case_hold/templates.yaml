@@ -1,0 +1,153 @@
+dataset: lex_glue
+subset: case_hold
+templates:
+  4fb5e9f1-9189-475f-87b5-9e6dadc3c4f9: !Template
+    answer_choices: null
+    id: 4fb5e9f1-9189-475f-87b5-9e6dadc3c4f9
+    jinja: 'Based on the following context:
+
+      "{{context.replace("<HOLDING>", "___")}}"
+
+
+      Choose the right answer to fill in
+
+      the blank from the following options:
+
+
+      0. {{endings[0]}}
+
+      1. {{endings[1]}}
+
+      2. {{endings[2]}}
+
+      3. {{endings[3]}}
+
+      4. {{endings[4]}} |||
+
+
+      {{endings[label]}}'
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: RST_Cloze_MCQ_Separated_Prompt
+    reference: Like RST_Cloze_MCQ but prompt is separated out.
+  66c2591c-43ac-4bd1-b23d-8699039b44ea: !Template
+    answer_choices: null
+    id: 66c2591c-43ac-4bd1-b23d-8699039b44ea
+    jinja: 'Given the following excerpt from a US court opinion:
+
+      "{{context.replace("<HOLDING>", "[Masked Holding]")}}"
+
+
+      The [Masked Holding] is a placeholder for one of the following options:
+
+
+      0. {{endings[0]}}
+
+      1. {{endings[1]}}
+
+      2. {{endings[2]}}
+
+      3. {{endings[3]}}
+
+      4. {{endings[4]}}
+
+
+      The index of the relevant option is: |||
+
+
+      {{label}}'
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: Guess the index
+    reference: Variation fo SN-lm-eval-harness version -- M1 eval of guessing index
+      alone.
+  ef510347-d20f-489a-a5ef-a10702ccf2af: !Template
+    answer_choices: null
+    id: ef510347-d20f-489a-a5ef-a10702ccf2af
+    jinja: 'Based on the context, choose the right answer to fill in
+
+      the blank from the given options.
+
+
+      Context:
+
+      "{{context.replace("<HOLDING>", "___")}}"
+
+
+      The options are:
+
+
+      0. {{endings[0]}}
+
+      1. {{endings[1]}}
+
+      2. {{endings[2]}}
+
+      3. {{endings[3]}}
+
+      4. {{endings[4]}} |||
+
+
+      {{endings[label]}}'
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      languages: []
+      metrics: []
+      original_task: false
+    name: RST_Cloze_MCQ
+    reference: Table 8 of https://arxiv.org/pdf/2206.11147.pdf
+  ef590b60-934c-4bc7-a38b-49909118bdac: !Template
+    answer_choices: null
+    id: ef590b60-934c-4bc7-a38b-49909118bdac
+    jinja: 'Given the following excerpt from a US court opinion:
+
+      "{{context.replace("<HOLDING>", "[Masked Holding]")}}"
+
+
+      The [Masked Holding] is a placeholder for one of the following options:
+
+
+      0. {{endings[0]}}
+
+      1. {{endings[1]}}
+
+      2. {{endings[2]}}
+
+      3. {{endings[3]}}
+
+      4. {{endings[4]}}
+
+
+      Output the index and text of the correct option. |||
+
+
+      {{label}}. {{endings[label]}}'
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: Guess the index and text
+    reference: Guess the index and text of correct answer.
+  f30f1cd6-e7bc-4348-bef9-c90d58d3f6d8: !Template
+    answer_choices: null
+    id: f30f1cd6-e7bc-4348-bef9-c90d58d3f6d8
+    jinja: 'Given the following excerpt from a US court opinion:\n"{{context.replace("<HOLDING>",
+      "[Masked Holding]")}}"\n\nThe [Masked Holding] is a placeholder for one of the
+      following options:\n- {{endings[0]}}\n- {{endings[1]}}\n- {{endings[2]}}\n-
+      {{endings[3]}}\n- {{endings[4]}}\nThe relevant option is: |||
+
+      {{endings[label]}}'
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: coastalcph_style
+    reference: https://raw.githubusercontent.com/coastalcph/zeroshot_lexglue/main/data/instruction-following-examples/case_hold.jsonl
