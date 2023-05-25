@@ -49,7 +49,6 @@ templates:
   8aec3a54-3fb7-420a-8320-bb8f65da7845: !Template
     answer_choices: Article 2 ||| Article 3 ||| Article 5 ||| Article 6 ||| Article
       8 ||| Article 9 ||| Article 10 ||| Article 11 ||| Article 14 ||| Article P1-1
-      ||| None
     id: 8aec3a54-3fb7-420a-8320-bb8f65da7845
     jinja: 'Here are some facts from a European Court of Human Rights (ECtHR) case.\n"{{''\n''.join(text).replace(''
       ,'', '','').replace('' .'', ''.'').replace(''`` '', ''\'''').replace('' \''\'''',
@@ -98,7 +97,7 @@ templates:
   9bc5fed6-a2c9-444d-a627-3fa21e6d37d3: !Template
     answer_choices: Article 2 ||| Article 3 ||| Article 5 ||| Article 6 ||| Article
       8 ||| Article 9 ||| Article 10 ||| Article 11 ||| Article 14 ||| Article P1-1
-      ||| None
+      ||| None of the above
     id: 9bc5fed6-a2c9-444d-a627-3fa21e6d37d3
     jinja: 'Given the following facts from a European Court of Human Rights (ECtHR)
       case:
@@ -172,6 +171,44 @@ templates:
       '', ''\'''').replace('' \''\'''', ''\'''').strip()}}"\n\nWhich article(s) of
       ECHR have been violated, if any, out of the following options:
 
+      - {{''\n- ''.join(answer_choices)}}\nThe relevant options are: |||
+
+      {% if labels|length == 0 %}
+
+      None
+
+      {% else %}
+
+      {% set answers = [] %}
+
+      {% for index in labels %}
+
+      {% set dummy = answers.append(answer_choices[index]) %}
+
+      {% endfor %}
+
+      {{ answers | join('', '') }}
+
+      {% endif %}
+
+      '
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: coastalcph style
+    reference: ''
+  dae16bc3-4635-43ff-a65c-046ba550b417: !Template
+    answer_choices: Article 2 ||| Article 3 ||| Article 5 ||| Article 6 ||| Article
+      8 ||| Article 9 ||| Article 10 ||| Article 11 ||| Article 14 ||| Article P1-1
+      ||| None of the above
+    id: dae16bc3-4635-43ff-a65c-046ba550b417
+    jinja: 'Given the following facts from a European Court of Human Rights (ECtHR)
+      case:\n"{{''\n''.join(text).replace('' ,'', '','').replace('' .'', ''.'').replace(''``
+      '', ''\'''').replace('' \''\'''', ''\'''').strip()}}"\n\nWhich article(s) of
+      ECHR have been violated, if any, out of the following options:
+
       - {{''\n- ''.join(answer_choices)}}\nPlease answer in a complete sentence. |||
 
       {% if labels|length == 0 %}
@@ -197,40 +234,6 @@ templates:
       {{ answers | join('', '') }} of ECHR have been violated.
 
       {% endif %}
-
-      {% endif %}'
-    metadata: !TemplateMetadata
-      choices_in_prompt: false
-      languages: []
-      metrics: []
-      original_task: false
-    name: coastalcph style
-    reference: ''
-  dae16bc3-4635-43ff-a65c-046ba550b417: !Template
-    answer_choices: null
-    id: dae16bc3-4635-43ff-a65c-046ba550b417
-    jinja: 'Given the following facts from a European Court of Human Rights (ECtHR)
-      case:\n"{{''\n''.join(text).replace('' ,'', '','').replace('' .'', ''.'').replace(''``
-      '', ''\'''').replace('' \''\'''', ''\'''').strip()}}"\n\nWhich article(s) of
-      ECHR have been violated, if any, out of the following options:
-
-      - {{''\n- ''.join(answer_choices)}}\nThe relevant options are: |||
-
-      {% if labels|length == 0 %}
-
-      None
-
-      {% else %}
-
-      {% set answers = [] %}
-
-      {% for index in labels %}
-
-      {% set dummy = answers.append(answer_choices[index]) %}
-
-      {% endfor %}
-
-      {{ answers | join('', '') }}
 
       {% endif %}'
     metadata: !TemplateMetadata
