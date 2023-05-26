@@ -1,0 +1,48 @@
+dataset: lex_glue
+subset: ecthr_b
+templates:
+  75f071dc-731a-44bf-bb91-6a5f6e5fa5b0: !Template
+    answer_choices: Article 2 ||| Article 3 ||| Article 5 ||| Article 6 ||| Article
+      8 ||| Article 9 ||| Article 10 ||| Article 11 ||| Article 14 ||| Article P1-1
+      ||| None of the above
+    id: 75f071dc-731a-44bf-bb91-6a5f6e5fa5b0
+    jinja: 'Given the following facts from a European Court of Human Rights (ECtHR)
+      case:
+
+      "{{''\n''.join(text).replace('' ,'', '','').replace('' .'', ''.'').replace(''``
+      '', ''\'''').replace('' \''\'''', ''\'''').strip()}}"
+
+
+      Which article(s) of the European Convention of Human Rights (ECHR) may be considered
+      in court out of the following options:
+
+
+      {{'', ''.join(answer_choices)}}
+
+
+      The following articles may be considered in court: |||
+
+      {% if labels|length == 0 %}
+
+      None of the above
+
+      {% else %}
+
+      {% set answers = [] %}
+
+      {% for index in labels %}
+
+      {% set dummy = answers.append(answer_choices[index]) %}
+
+      {% endfor %}
+
+      {{ answers | join('', '') }}
+
+      {% endif %}'
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: SN-lm-eval-harness_v1
+    reference: ''
