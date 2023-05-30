@@ -95,9 +95,13 @@ templates:
     name: Yes/No then specify
     reference: ''
   9bc5fed6-a2c9-444d-a627-3fa21e6d37d3: !Template
-    answer_choices: Article 2 ||| Article 3 ||| Article 5 ||| Article 6 ||| Article
-      8 ||| Article 9 ||| Article 10 ||| Article 11 ||| Article 14 ||| Article P1-1
-      ||| None of the above
+    answer_choices: 'Article 2: Right to Life ||| Article 3: Prohibition of Torture
+      and Inhuman or Degrading Treatment or Punishment ||| Article 5: Right to Liberty
+      and Security ||| Article 6: Right to a Fair Trial ||| Article 8: Right to Respect
+      for Private and Family Life ||| Article 9: Freedom of Thought, Conscience, and
+      Religion ||| Article 10: Freedom of Expression ||| Article 11: Freedom of Assembly
+      and Association ||| Article 14: Prohibition of Discrimination ||| Article P1-1:
+      Protection of Property ||| None of the above'
     id: 9bc5fed6-a2c9-444d-a627-3fa21e6d37d3
     jinja: 'Given the following facts from a European Court of Human Rights (ECtHR)
       case:
