@@ -1,6 +1,153 @@
 dataset: lex_glue
 subset: ecthr_b
 templates:
+  51570693-35c5-4f1d-b0eb-ef95b345371a: !Template
+    answer_choices: Article 2 - Right to life ||| Article 3 - Prohibition of torture
+      ||| Article 5 - Right to liberty and security ||| Article 6 - Right to a fair
+      trial ||| Article 8 - Right to respect for private and family life ||| Article
+      9 - Freedom of thought, conscience and religion ||| Article 10 - Freedom of
+      expression ||| Article 11 - Freedom of assembly and association ||| Article
+      14 - Prohibition of discrimination ||| Article P1-1 - Protection of property
+      ||| None of the above
+    id: 51570693-35c5-4f1d-b0eb-ef95b345371a
+    jinja: 'Given the following facts from a European Court of Human Rights (ECtHR)
+      opinion:
+
+      "{{''\n''.join(text).replace('' ,'', '','').replace('' .'', ''.'').replace(''``
+      '', ''\'''').replace('' \''\'''', ''\'''').strip()}}"
+
+
+      Which article(s) of the European Convention of Human Rights (ECHR) were considered
+      in court, if any, out of the following options:
+
+
+      {{'', ''.join(answer_choices)}}
+
+
+      The articles considered are: |||
+
+      {% if labels|length == 0 %}
+
+      None of the above
+
+      {% else %}
+
+      {% set answers = [] %}
+
+      {% for index in labels %}
+
+      {% set dummy = answers.append(answer_choices[index]) %}
+
+      {% endfor %}
+
+      {{ answers | join('', '') }}
+
+      {% endif %}'
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: coastalcph_v3
+    reference: ''
+  60454c06-c38a-4e1c-ac73-0fbe9eb2cfac: !Template
+    answer_choices: Article 2 ||| Article 3 ||| Article 5 ||| Article 6 ||| Article
+      8 ||| Article 9 ||| Article 10 ||| Article 11 ||| Article 14 ||| Article P1-1
+      ||| None
+    id: 60454c06-c38a-4e1c-ac73-0fbe9eb2cfac
+    jinja: 'Based on the details provided in this European Court of Human Rights (ECtHR)
+      case:
+
+      "{{''\n''.join(text).replace('' ,'', '','').replace('' .'', ''.'').replace(''``
+      '', ''\'''').replace('' \''\'''', ''\'''').strip()}}"
+
+
+      Analyze which specific articles of the European Convention on Human Rights (ECHR)
+      could potentially apply in the given context. Consider the following articles
+      and indicate their relevance, if any, to the case:
+
+
+      {{'', ''.join(answer_choices)}}
+
+
+      Please assess the applicability of the aforementioned articles to the case.
+      |||
+
+      {% if labels|length == 0 %}
+
+      None of the articles are applicable.
+
+      {% else %}
+
+      {% set answers = [] %}
+
+      {% for index in labels %}
+
+      {% set dummy = answers.append(answer_choices[index]) %}
+
+      {% endfor %}
+
+      {% if labels|length == 1 %}
+
+      {{ answers[0] }} of ECHR is applicable.
+
+      {% else %}
+
+      {{ answers | join('', '') }} of ECHR are applicable.
+
+      {% endif %}
+
+      {% endif %}'
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: chatgpt_1
+    reference: ''
+  7169dd20-0314-44f5-867e-12c6dfe764da: !Template
+    answer_choices: Article 2 ||| Article 3 ||| Article 5 ||| Article 6 ||| Article
+      8 ||| Article 9 ||| Article 10 ||| Article 11 ||| Article 14 ||| Article P1-1
+      ||| None
+    id: 7169dd20-0314-44f5-867e-12c6dfe764da
+    jinja: 'From this following list of European Convention of Human Rights (ECHR)
+      articles:
+
+
+      {{'', ''.join(answer_choices)}}
+
+
+      Consider the facts of the following European Court of Human Rights (ECtHR) case
+      and list the appropriate article(s) that could be considered in court:
+
+
+      "{{''\n''.join(text).replace('' ,'', '','').replace('' .'', ''.'').replace(''``
+      '', ''\'''').replace('' \''\'''', ''\'''').strip()}}" |||
+
+      {% if labels|length == 0 %}
+
+      None of the above
+
+      {% else %}
+
+      {% set answers = [] %}
+
+      {% for index in labels %}
+
+      {% set dummy = answers.append(answer_choices[index]) %}
+
+      {% endfor %}
+
+      {{ answers | join('', '') }}
+
+      {% endif %}'
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: article_options_first
+    reference: ''
   75f071dc-731a-44bf-bb91-6a5f6e5fa5b0: !Template
     answer_choices: Article 2 ||| Article 3 ||| Article 5 ||| Article 6 ||| Article
       8 ||| Article 9 ||| Article 10 ||| Article 11 ||| Article 14 ||| Article P1-1
@@ -45,4 +192,24 @@ templates:
       metrics: []
       original_task: false
     name: SN-lm-eval-harness_v1
+    reference: ''
+  e8963a81-f098-4ff9-a272-32547ca3bf4e: !Template
+    answer_choices: 2 ||| 3 ||| 5 ||| 6 ||| 8 ||| 9 ||| 10 ||| 11 ||| 14 ||| P1-1
+      ||| None
+    id: e8963a81-f098-4ff9-a272-32547ca3bf4e
+    jinja: "Given the following facts from a European Court of Human Rights (ECtHR)\
+      \ opinion:\n\"{{'\\n'.join(text).replace(' ,', ',').replace(' .', '.').replace('``\
+      \ ', '\\'').replace(' \\'\\'', '\\'').strip()}}\"\n\nWhich article(s) of the\
+      \ European Convention of Human Rights (ECHR) were considered in court, if any,\
+      \ out of the following options: \n\n{{', '.join(answer_choices)}}\n\nName the\
+      \ article numbers that were considered in court: |||\n{% if labels|length ==\
+      \ 0 %}\nNone\n{% else %}\n{% set answers = [] %}\n{% for index in labels %}\n\
+      {% set dummy = answers.append(answer_choices[index]) %}\n{% endfor %}\n{{ answers\
+      \ | join(', ') }}\n{% endif %}\n\n"
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: numbers_only+v2
     reference: ''
