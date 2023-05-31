@@ -1,0 +1,113 @@
+dataset: lex_glue
+subset: scotus
+templates:
+  8e1eb73a-115f-41cc-9d13-0a856eecab43: !Template
+    answer_choices: Criminal Procedure ||| Civil Rights ||| First Amendment ||| Due
+      Process ||| Privacy ||| Attorneys ||| Unions ||| Economic Activity ||| Judicial
+      Power ||| Federalism ||| Interstate Relations ||| Federal Taxation ||| Miscellaneous
+    id: 8e1eb73a-115f-41cc-9d13-0a856eecab43
+    jinja: 'Text: "{{text}}"
+
+
+      What is the topic of the text? {{'', ''.join(answer_choices)}}? ||| {{answer_choices[label]}}'
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: RST_yahoo_answers_5
+    reference: ''
+  9552eb93-87d8-41dd-a313-71236b0bd679: !Template
+    answer_choices: Criminal Procedure ||| Civil Rights ||| First Amendment ||| Due
+      Process ||| Privacy ||| Attorneys ||| Unions ||| Economic Activity ||| Judicial
+      Power ||| Federalism ||| Interstate Relations ||| Federal Taxation ||| Miscellaneous
+    id: 9552eb93-87d8-41dd-a313-71236b0bd679
+    jinja: 'Given the following opinion from the Supreme Court of USA (SCOTUS):
+
+
+      "{{text}}"
+
+
+      Which topics are relevant out of the following options:
+
+      - {{''\n- ''.join(answer_choices)}}
+
+
+      The relevant option is:  ||| {{answer_choices[label]}}
+
+      '
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: coastalcph
+    reference: ''
+  d2ac8c3b-a064-48a5-944f-e4cbf36c24f5: !Template
+    answer_choices: Criminal Procedure ||| Civil Rights ||| First Amendment ||| Due
+      Process ||| Privacy ||| Attorneys ||| Unions ||| Economic Activity ||| Judicial
+      Power ||| Federalism ||| Interstate Relations ||| Federal Taxation ||| Miscellaneous
+    id: d2ac8c3b-a064-48a5-944f-e4cbf36c24f5
+    jinja: 'Please select an appropriate topic from the following options based on
+      the opinion expressed by the Supreme Court of the United States (SCOTUS):
+
+
+      Topic Choices:
+
+      - {{''\n- ''.join(answer_choices)}}
+
+
+      Opinion Statement from SCOTUS:
+
+      "{{text}}" ||| {{answer_choices[label]}}'
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: chatgpt_topics_first
+    reference: ''
+  d996c9ec-6eb8-439d-bacd-0be0683a9c73: !Template
+    answer_choices: Criminal Procedure ||| Civil Rights ||| First Amendment ||| Due
+      Process ||| Privacy ||| Attorneys ||| Unions ||| Economic Activity ||| Judicial
+      Power ||| Federalism ||| Interstate Relations ||| Federal Taxation ||| Miscellaneous
+    id: d996c9ec-6eb8-439d-bacd-0be0683a9c73
+    jinja: 'Text: "{{text}}"
+
+
+      Classify this text. You may choose from {{'', ''.join(answer_choices)}}. |||
+      {{answer_choices[label]}}'
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: RST_yahoo_answers_2
+    reference: ''
+  ffe5f534-4fa4-4ebc-8a06-e475914605cc: !Template
+    answer_choices: Criminal Procedure ||| Civil Rights ||| First Amendment ||| Due
+      Process ||| Privacy ||| Attorneys ||| Unions ||| Economic Activity ||| Judicial
+      Power ||| Federalism ||| Interstate Relations ||| Federal Taxation ||| Miscellaneous
+    id: ffe5f534-4fa4-4ebc-8a06-e475914605cc
+    jinja: 'Analyze the provided opinion from the Supreme Court of USA (SCOTUS) and
+      identify the relevant topics from the given options:
+
+
+      Opinion:
+
+      "{{text}}"
+
+
+      Options:
+
+      - {{''\n- ''.join(answer_choices)}}
+
+
+      Identify the option that is pertinent to the opinion:  ||| {{answer_choices[label]}}'
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: chatgpt1
+    reference: ''

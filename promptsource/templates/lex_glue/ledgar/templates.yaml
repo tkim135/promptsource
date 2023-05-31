@@ -1,0 +1,195 @@
+dataset: lex_glue
+subset: ledgar
+templates:
+  05863ecb-2fe4-413b-8d02-99fd0fa757b8: !Template
+    answer_choices: Adjustments ||| Agreements ||| Amendments ||| Anti-Corruption
+      Laws ||| Applicable Laws ||| Approvals ||| Arbitration ||| Assignments ||| Assigns
+      ||| Authority ||| Authorizations ||| Base Salary ||| Benefits ||| Binding Effects
+      ||| Books ||| Brokers ||| Capitalization ||| Change In Control ||| Closings
+      ||| Compliance With Laws ||| Confidentiality ||| Consent To Jurisdiction |||
+      Consents ||| Construction ||| Cooperation ||| Costs ||| Counterparts ||| Death
+      ||| Defined Terms ||| Definitions ||| Disability ||| Disclosures ||| Duties
+      ||| Effective Dates ||| Effectiveness ||| Employment ||| Enforceability |||
+      Enforcements ||| Entire Agreements ||| Erisa ||| Existence ||| Expenses |||
+      Fees ||| Financial Statements ||| Forfeitures ||| Further Assurances ||| General
+      ||| Governing Laws ||| Headings ||| Indemnifications ||| Indemnity ||| Insurances
+      ||| Integration ||| Intellectual Property ||| Interests ||| Interpretations
+      ||| Jurisdictions ||| Liens ||| Litigations ||| Miscellaneous ||| Modifications
+      ||| No Conflicts ||| No Defaults ||| No Waivers ||| Non-Disparagement ||| Notices
+      ||| Organizations ||| Participations ||| Payments ||| Positions ||| Powers |||
+      Publicity ||| Qualifications ||| Records ||| Releases ||| Remedies ||| Representations
+      ||| Sales ||| Sanctions ||| Severability ||| Solvency ||| Specific Performance
+      ||| Submission To Jurisdiction ||| Subsidiaries ||| Successors ||| Survival
+      ||| Tax Withholdings ||| Taxes ||| Terminations ||| Terms ||| Titles ||| Transactions
+      With Affiliates ||| Use Of Proceeds ||| Vacations ||| Venues ||| Vesting |||
+      Waiver Of Jury Trials ||| Waivers ||| Warranties ||| Withholdings
+    id: 05863ecb-2fe4-413b-8d02-99fd0fa757b8
+    jinja: 'Text: "{{text}}"
+
+
+      Given a list of titles: {{'', ''.join(answer_choices)}}, which one can express
+      the
+
+      main idea of the text? ||| {{answer_choices[label]}}'
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: RST_DailyMail_MCQ_3
+    reference: ''
+  25e3e09f-f716-4b8e-afe2-97e797c71bdb: !Template
+    answer_choices: Adjustments ||| Agreements ||| Amendments ||| Anti-Corruption
+      Laws ||| Applicable Laws ||| Approvals ||| Arbitration ||| Assignments ||| Assigns
+      ||| Authority ||| Authorizations ||| Base Salary ||| Benefits ||| Binding Effects
+      ||| Books ||| Brokers ||| Capitalization ||| Change In Control ||| Closings
+      ||| Compliance With Laws ||| Confidentiality ||| Consent To Jurisdiction |||
+      Consents ||| Construction ||| Cooperation ||| Costs ||| Counterparts ||| Death
+      ||| Defined Terms ||| Definitions ||| Disability ||| Disclosures ||| Duties
+      ||| Effective Dates ||| Effectiveness ||| Employment ||| Enforceability |||
+      Enforcements ||| Entire Agreements ||| Erisa ||| Existence ||| Expenses |||
+      Fees ||| Financial Statements ||| Forfeitures ||| Further Assurances ||| General
+      ||| Governing Laws ||| Headings ||| Indemnifications ||| Indemnity ||| Insurances
+      ||| Integration ||| Intellectual Property ||| Interests ||| Interpretations
+      ||| Jurisdictions ||| Liens ||| Litigations ||| Miscellaneous ||| Modifications
+      ||| No Conflicts ||| No Defaults ||| No Waivers ||| Non-Disparagement ||| Notices
+      ||| Organizations ||| Participations ||| Payments ||| Positions ||| Powers |||
+      Publicity ||| Qualifications ||| Records ||| Releases ||| Remedies ||| Representations
+      ||| Sales ||| Sanctions ||| Severability ||| Solvency ||| Specific Performance
+      ||| Submission To Jurisdiction ||| Subsidiaries ||| Successors ||| Survival
+      ||| Tax Withholdings ||| Taxes ||| Terminations ||| Terms ||| Titles ||| Transactions
+      With Affiliates ||| Use Of Proceeds ||| Vacations ||| Venues ||| Vesting |||
+      Waiver Of Jury Trials ||| Waivers ||| Warranties ||| Withholdings
+    id: 25e3e09f-f716-4b8e-afe2-97e797c71bdb
+    jinja: 'Given the following contractual section:
+
+
+      "{{text}}"
+
+
+      Can you choose an appropriate section title from the following options?
+
+      - {{''\n- ''.join(answer_choices)}} ||| {{answer_choices[label]}}'
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: coastalcph_question_form
+    reference: ''
+  a10fa955-0733-45e6-bda9-459097bc702a: !Template
+    answer_choices: Adjustments ||| Agreements ||| Amendments ||| Anti-Corruption
+      Laws ||| Applicable Laws ||| Approvals ||| Arbitration ||| Assignments ||| Assigns
+      ||| Authority ||| Authorizations ||| Base Salary ||| Benefits ||| Binding Effects
+      ||| Books ||| Brokers ||| Capitalization ||| Change In Control ||| Closings
+      ||| Compliance With Laws ||| Confidentiality ||| Consent To Jurisdiction |||
+      Consents ||| Construction ||| Cooperation ||| Costs ||| Counterparts ||| Death
+      ||| Defined Terms ||| Definitions ||| Disability ||| Disclosures ||| Duties
+      ||| Effective Dates ||| Effectiveness ||| Employment ||| Enforceability |||
+      Enforcements ||| Entire Agreements ||| Erisa ||| Existence ||| Expenses |||
+      Fees ||| Financial Statements ||| Forfeitures ||| Further Assurances ||| General
+      ||| Governing Laws ||| Headings ||| Indemnifications ||| Indemnity ||| Insurances
+      ||| Integration ||| Intellectual Property ||| Interests ||| Interpretations
+      ||| Jurisdictions ||| Liens ||| Litigations ||| Miscellaneous ||| Modifications
+      ||| No Conflicts ||| No Defaults ||| No Waivers ||| Non-Disparagement ||| Notices
+      ||| Organizations ||| Participations ||| Payments ||| Positions ||| Powers |||
+      Publicity ||| Qualifications ||| Records ||| Releases ||| Remedies ||| Representations
+      ||| Sales ||| Sanctions ||| Severability ||| Solvency ||| Specific Performance
+      ||| Submission To Jurisdiction ||| Subsidiaries ||| Successors ||| Survival
+      ||| Tax Withholdings ||| Taxes ||| Terminations ||| Terms ||| Titles ||| Transactions
+      With Affiliates ||| Use Of Proceeds ||| Vacations ||| Venues ||| Vesting |||
+      Waiver Of Jury Trials ||| Waivers ||| Warranties ||| Withholdings
+    id: a10fa955-0733-45e6-bda9-459097bc702a
+    jinja: '{{text}}
+
+
+      Which of the following could be the title of the preceding contractual section?
+      {{'', ''.join(answer_choices)}}? ||| {{answer_choices[label]}}'
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: RST_DailyMail_MCQ_20
+    reference: ''
+  a5e5698e-599b-408d-ae30-d925e09410f4: !Template
+    answer_choices: Adjustments ||| Agreements ||| Amendments ||| Anti-Corruption
+      Laws ||| Applicable Laws ||| Approvals ||| Arbitration ||| Assignments ||| Assigns
+      ||| Authority ||| Authorizations ||| Base Salary ||| Benefits ||| Binding Effects
+      ||| Books ||| Brokers ||| Capitalization ||| Change In Control ||| Closings
+      ||| Compliance With Laws ||| Confidentiality ||| Consent To Jurisdiction |||
+      Consents ||| Construction ||| Cooperation ||| Costs ||| Counterparts ||| Death
+      ||| Defined Terms ||| Definitions ||| Disability ||| Disclosures ||| Duties
+      ||| Effective Dates ||| Effectiveness ||| Employment ||| Enforceability |||
+      Enforcements ||| Entire Agreements ||| Erisa ||| Existence ||| Expenses |||
+      Fees ||| Financial Statements ||| Forfeitures ||| Further Assurances ||| General
+      ||| Governing Laws ||| Headings ||| Indemnifications ||| Indemnity ||| Insurances
+      ||| Integration ||| Intellectual Property ||| Interests ||| Interpretations
+      ||| Jurisdictions ||| Liens ||| Litigations ||| Miscellaneous ||| Modifications
+      ||| No Conflicts ||| No Defaults ||| No Waivers ||| Non-Disparagement ||| Notices
+      ||| Organizations ||| Participations ||| Payments ||| Positions ||| Powers |||
+      Publicity ||| Qualifications ||| Records ||| Releases ||| Remedies ||| Representations
+      ||| Sales ||| Sanctions ||| Severability ||| Solvency ||| Specific Performance
+      ||| Submission To Jurisdiction ||| Subsidiaries ||| Successors ||| Survival
+      ||| Tax Withholdings ||| Taxes ||| Terminations ||| Terms ||| Titles ||| Transactions
+      With Affiliates ||| Use Of Proceeds ||| Vacations ||| Venues ||| Vesting |||
+      Waiver Of Jury Trials ||| Waivers ||| Warranties ||| Withholdings
+    id: a5e5698e-599b-408d-ae30-d925e09410f4
+    jinja: 'Given the following contractual section:
+
+
+      "{{text}}"
+
+
+      There is an appropriate section title out of the following options:
+
+      - {{''\n- ''.join(answer_choices)}}
+
+
+      The appropriate option is: ||| {{answer_choices[label]}}'
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: coastalcph
+    reference: ''
+  c0c88425-afdd-4e7a-9c0a-f77dcd13621c: !Template
+    answer_choices: Adjustments ||| Agreements ||| Amendments ||| Anti-Corruption
+      Laws ||| Applicable Laws ||| Approvals ||| Arbitration ||| Assignments ||| Assigns
+      ||| Authority ||| Authorizations ||| Base Salary ||| Benefits ||| Binding Effects
+      ||| Books ||| Brokers ||| Capitalization ||| Change In Control ||| Closings
+      ||| Compliance With Laws ||| Confidentiality ||| Consent To Jurisdiction |||
+      Consents ||| Construction ||| Cooperation ||| Costs ||| Counterparts ||| Death
+      ||| Defined Terms ||| Definitions ||| Disability ||| Disclosures ||| Duties
+      ||| Effective Dates ||| Effectiveness ||| Employment ||| Enforceability |||
+      Enforcements ||| Entire Agreements ||| Erisa ||| Existence ||| Expenses |||
+      Fees ||| Financial Statements ||| Forfeitures ||| Further Assurances ||| General
+      ||| Governing Laws ||| Headings ||| Indemnifications ||| Indemnity ||| Insurances
+      ||| Integration ||| Intellectual Property ||| Interests ||| Interpretations
+      ||| Jurisdictions ||| Liens ||| Litigations ||| Miscellaneous ||| Modifications
+      ||| No Conflicts ||| No Defaults ||| No Waivers ||| Non-Disparagement ||| Notices
+      ||| Organizations ||| Participations ||| Payments ||| Positions ||| Powers |||
+      Publicity ||| Qualifications ||| Records ||| Releases ||| Remedies ||| Representations
+      ||| Sales ||| Sanctions ||| Severability ||| Solvency ||| Specific Performance
+      ||| Submission To Jurisdiction ||| Subsidiaries ||| Successors ||| Survival
+      ||| Tax Withholdings ||| Taxes ||| Terminations ||| Terms ||| Titles ||| Transactions
+      With Affiliates ||| Use Of Proceeds ||| Vacations ||| Venues ||| Vesting |||
+      Waiver Of Jury Trials ||| Waivers ||| Warranties ||| Withholdings
+    id: c0c88425-afdd-4e7a-9c0a-f77dcd13621c
+    jinja: 'Among the following options for possible section titles:
+
+      - {{''\n- ''.join(answer_choices)}}
+
+
+      Choose the most suitable section title for the following contractual section:
+
+
+      "{{text}}" ||| {{answer_choices[label]}}'
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: options_first
+    reference: ''

@@ -1,0 +1,176 @@
+dataset: cuad
+templates:
+  17b83a3f-f748-42e6-9cdf-b2951dd8299d: !Template
+    answer_choices: null
+    id: 17b83a3f-f748-42e6-9cdf-b2951dd8299d
+    jinja: '{% set seq = [
+
+      ''Answer the question depending on the context.'',
+
+      ''What is the answer?'',
+
+      ] %}
+
+
+      {{ seq | choice }}
+
+      Context: {{context}};
+
+      Question: {{question}};
+
+      Answer: |||
+
+      {% if answers.text == [] %}
+
+      Answer not in context
+
+      {% else %}
+
+      {{answers.text[0]}}
+
+      {% endif %}'
+    metadata: &id001 !TemplateMetadata
+      choices_in_prompt: false
+      languages:
+      - en
+      metrics:
+      - Squad
+      original_task: true
+    name: Questions with Context
+    reference: Given context and question, give answer
+  8bea1123-fd8d-4bac-96bf-b8a289ee74b3: !Template
+    answer_choices: null
+    id: 8bea1123-fd8d-4bac-96bf-b8a289ee74b3
+    jinja: '{% set seq = [
+
+      ''Can you '',
+
+      ''Please '',
+
+      ''I want to know: '',
+
+      ''I want to ask: '',
+
+      ''What is the answer to: '',
+
+      ''Find the answer to: '',
+
+      ''Answer: '',
+
+      '''',
+
+      ] %}
+
+      {{context}}
+
+      {{ seq | choice }}{{question}}|||
+
+      {% if answers.text == [] %}
+
+      Answer not in context
+
+      {% else %}
+
+      {{answers.text[0]}}
+
+      {% endif %}'
+    metadata: &id002 !TemplateMetadata
+      choices_in_prompt: false
+      languages:
+      - en
+      metrics:
+      - Squad
+      original_task: true
+    name: Questions with Context - Without Prompt Keywords
+    reference: Given context and question, give answer. No keywords to delineate context
+      and question is given.
+  b14c9843-fd56-42ff-817d-39e41963c847: !Template
+    answer_choices: null
+    id: b14c9843-fd56-42ff-817d-39e41963c847
+    jinja: '{% set seq = [
+
+      ''Answer the question depending on the context.'',
+
+      ''What is the answer?'',
+
+      ] %}
+
+
+      {{ seq | choice }}
+
+      Context: {{context}};
+
+      Question: {{question}};
+
+      If you can''t find the answer, please respond "unanswerable".
+
+      Answer: |||
+
+      {% if answers.text == [] %}
+
+      unanswerable
+
+      {% else %}
+
+      {{answers.text[0]}}
+
+      {% endif %}'
+    metadata: *id001
+    name: Questions with Context +unanswerable
+    reference: Given context and question, give answer
+  e1630107-8f5d-44ce-8ccd-6fa80da80328: !Template
+    answer_choices: null
+    id: e1630107-8f5d-44ce-8ccd-6fa80da80328
+    jinja: '{% set seq = [
+
+      ''Can you '',
+
+      ''Please '',
+
+      ''I want to know: '',
+
+      ''I want to ask: '',
+
+      ''What is the answer to: '',
+
+      ''Find the answer to: '',
+
+      ''Answer: '',
+
+      '''',
+
+      ] %}
+
+      {{context}}
+
+      {{ seq | choice }}{{question}} If you can''t find the answer, please
+      respond "unanswerable". |||
+
+      {% if answers.text == [] %}
+
+      unanswerable
+
+      {% else %}
+
+      {{answers.text[0]}}
+
+      {% endif %}'
+    metadata: *id002
+    name: Questions with Context - Without Prompt Keywords +unanswerable
+    reference: Given context and question, give answer. No keywords to delineate context
+      and question is given.
+  e2e41877-4794-4ff9-9f92-a2a85105e2a7: !Template
+    answer_choices: yes ||| no
+    id: e2e41877-4794-4ff9-9f92-a2a85105e2a7
+    jinja: "Context: {{context}}; \n\nQuestion: {{question}} \n\nIs this question\
+      \ answerable? ||| \n{% if answers.text != [] %}\n{{answer_choices[0]}}\n{% else\
+      \ %}\n{{answer_choices[1]}}\n{% endif %}"
+    metadata: !TemplateMetadata
+      choices_in_prompt: true
+      languages:
+      - en
+      metrics:
+      - Accuracy
+      original_task: false
+    name: Unanwerable question
+    reference: The template checks if the question is answerable or not
