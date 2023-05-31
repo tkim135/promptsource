@@ -1,0 +1,218 @@
+dataset: lex_glue
+subset: unfair_tos
+templates:
+  04d96389-73b1-4a4c-9145-d5ca812052a2: !Template
+    answer_choices: Limitation of liability ||| Unilateral termination ||| Unilateral
+      change ||| Content removal ||| Contract by using ||| Choice of law ||| Jurisdiction
+      ||| Arbitration ||| None
+    id: 04d96389-73b1-4a4c-9145-d5ca812052a2
+    jinja: 'Explore the various categories of unfairness in contracts:
+
+      - {{''\n- ''.join(answer_choices)}}
+
+
+      Can this sentence (provided below) from an online Term of Services be unfair
+      according to any of the aforementioned categories? If so, please identify the
+      specific category of unfairness:
+
+
+      "{{text}}" |||
+
+      {% if labels|length == 0 %}
+
+      No
+
+      {% else %}
+
+      {% set answers = [] %}
+
+      {% for index in labels %}
+
+      {% set dummy = answers.append(answer_choices[index]) %}
+
+      {% endfor %}
+
+      {% if labels|length == 1 %}
+
+      Yes, the sentence is unfair as a {{ answers[0] }} clause.
+
+      {% else %}
+
+      Yes, the sentence is unfair as a {{ answers | join('' clause, '') }} clause.
+
+      {% endif %}
+
+      {% endif %}'
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: Yes/No, provide options first
+    reference: ''
+  16d77dfa-2521-4e83-b1a2-012fdb1be8ee: !Template
+    answer_choices: Limitation of liability ||| Unilateral termination ||| Unilateral
+      change ||| Content removal ||| Contract by using ||| Choice of law ||| Jurisdiction
+      ||| Arbitration ||| None
+    id: 16d77dfa-2521-4e83-b1a2-012fdb1be8ee
+    jinja: 'Given the following sentence from an online Term of Services:
+
+
+      "{{text}}"
+
+
+      Categorize the sentence into the types provided:
+
+      - {{''\n- ''.join(answer_choices)}} |||
+
+      {% if labels|length == 0 %}
+
+      None
+
+      {% else %}
+
+      {% set answers = [] %}
+
+      {% for index in labels %}
+
+      {% set dummy = answers.append(answer_choices[index]) %}
+
+      {% endfor %}
+
+      {{ answers | join('', '') }}
+
+      {% endif %}'
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: Categorize
+    reference: ''
+  801e7e0d-1367-4bb8-9666-069fe60ab039: !Template
+    answer_choices: Limitation of liability ||| Unilateral termination ||| Unilateral
+      change ||| Content removal ||| Contract by using ||| Choice of law ||| Jurisdiction
+      ||| Arbitration ||| None
+    id: 801e7e0d-1367-4bb8-9666-069fe60ab039
+    jinja: 'Given the following clause from an online Terms of Service:
+
+
+      "{{text}}"
+
+
+      What type of clause unfairness fits the sentence best from the following options?
+
+      - {{''\n- ''.join(answer_choices)}} ||| {% if labels|length == 0 %}
+
+      None
+
+      {% else %}
+
+      {% set answers = [] %}
+
+      {% for index in labels %}
+
+      {% set dummy = answers.append(answer_choices[index]) %}
+
+      {% endfor %}
+
+      {{ answers | join('', '') }}
+
+      {% endif %}
+
+      '
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: what type
+    reference: ''
+  ae9f355a-0560-4a8d-a386-30f573963a23: !Template
+    answer_choices: Limitation of liability ||| Unilateral termination ||| Unilateral
+      change ||| Content removal ||| Contract by using ||| Choice of law ||| Jurisdiction
+      ||| Arbitration ||| None
+    id: ae9f355a-0560-4a8d-a386-30f573963a23
+    jinja: 'Given the following sentence from an online Term of Services:
+
+
+      "{{text}}"
+
+
+      The sentence is unfair with respect to some of the following options:
+
+      - {{''\n- ''.join(answer_choices)}}
+
+      The relevant options are: |||
+
+      {% if labels|length == 0 %}
+
+      None
+
+      {% else %}
+
+      {% set answers = [] %}
+
+      {% for index in labels %}
+
+      {% set dummy = answers.append(answer_choices[index]) %}
+
+      {% endfor %}
+
+      {{ answers | join('', '') }}
+
+      {% endif %}'
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: coastalcph
+    reference: ''
+  e0fde58c-66bd-42b1-b86d-241805fa9bcc: !Template
+    answer_choices: Limitation of liability ||| Unilateral termination ||| Unilateral
+      change ||| Content removal ||| Contract by using ||| Choice of law ||| Jurisdiction
+      ||| Arbitration ||| None
+    id: e0fde58c-66bd-42b1-b86d-241805fa9bcc
+    jinja: 'Given the following sentence from an online Term of Services:
+
+
+      "{{text}}"
+
+
+      Can the clause be potentially unfair? If the answer is "Yes", please also provide
+      the category of unfairness by choosing from the following options: - {{''\n-
+      ''.join(answer_choices)}} |||
+
+      {% if labels|length == 0 %}
+
+      No
+
+      {% else %}
+
+      {% set answers = [] %}
+
+      {% for index in labels %}
+
+      {% set dummy = answers.append(answer_choices[index]) %}
+
+      {% endfor %}
+
+      {% if labels|length == 1 %}
+
+      Yes, the sentence is unfair as a {{ answers[0] }} clause.
+
+      {% else %}
+
+      Yes, the sentence is unfair as a {{ answers | join('' clause, '') }} clause.
+
+      {% endif %}
+
+      {% endif %}'
+    metadata: !TemplateMetadata
+      choices_in_prompt: false
+      languages: []
+      metrics: []
+      original_task: false
+    name: Yes/No then categorize
+    reference: ''
